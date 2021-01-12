@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            background-color: floralwhite;
+            background-image: url('https://wallpaperaccess.com/full/1472771.jpg');
+            background-position: center;
+            background-size: cover;
+        }
+        
+        .main {
+            width: 600px;
+            background-color: rgb(247, 224, 94);
+            margin: auto;
+            text-align: center;
+        }
+        
+        .form {
+            padding: 10px;
+        }
+        
+        .log {
+            width: 600px;
+            background-color: rgb(252, 251, 248);
+            margin: auto;
+            padding: 3px 0px 3px 0px;
+            text-align: center;
+            border-radius: 15px 15px 0px 0px;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["fname"].value;
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="log">
+        <h1>Registration</h1>
+    </div>
+    <div class="main">
+        <form name="myForm" action="/appjournal/signup" onsubmit="return validateForm()" method="post">{% csrf_token %}
+            <h2>Name: <input type="text" name="name"></h2>
+            <h2> email_id :<input type="text" name="email_id"></h2>
+            <h2>password :<input type="text" name="password"></h2>
+            <h2> location: <input type="text" name="location"></h2>
+            <h2> <input type="submit" value="Submit"></h2>
+            {{ error_msg }}
+        </form>
+    </div>
+</body>
+
+</html>

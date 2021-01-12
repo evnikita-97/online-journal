@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <script>
+        function validateForm() {
+            var x = document.forms["myForm"]["fname"].value;
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <h1>Login</h1>
+
+
+    <form name="myForm" action="/appjournal/login" onsubmit="return validateForm()" method="post">
+        {% csrf_token %}
+        <div class="container">
+            <label><b>Mail_Id</b></label>
+            <input type="text" placeholder="Enter Username" name="email_id" required>
+
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit">Login</button>
+            <input type="checkbox" checked="checked"> Remember me
+        </div>
+        <!--<h3> mail_id :<input type="text" name="email_id"></h3>
+        <h3>password :<input type="text" name="password"></h3>
+        <h3> <input type="submit" value="Submit"></h3>-->
+        {{ error_msg }}
+    </form>
+</body>
+
+</html>
