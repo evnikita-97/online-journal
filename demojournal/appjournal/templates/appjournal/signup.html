@@ -5,29 +5,96 @@
     <title></title>
     <style type="text/css">
         body {
-            background-color: floralwhite;
-            background-image: url('https://wallpaperaccess.com/full/1472771.jpg');
+            background-color: rgb(20, 32, 32);
             background-position: center;
             background-size: cover;
         }
         
         .main {
-            width: 600px;
-            background-color: rgb(247, 224, 94);
+            width: 500px;
+            background-color: white;
+            border-radius: 15px 0px 15px 0px;
             margin: auto;
             text-align: center;
+        }
+        
+        .ad {
+            float: right;
         }
         
         .form {
             padding: 10px;
         }
         
+        .name {
+            margin-top: 30px;
+            margin-left: 15px;
+            text-align: left;
+            color: aliceblue;
+            text-shadow: 2px 2px 5px white;
+            width: 125px;
+            font-size: 20px;
+        }
+        
+        .ename {
+            position: relative;
+            left: 120px;
+            top: -37px;
+            line-height: 30px;
+            width: 150px;
+            border-radius: 6px;
+            padding: 0 22px;
+        }
+        
+        .div {
+            background-color: white;
+        }
+        
+        .Mail {
+            position: relative;
+            left: 120px;
+            top: -37px;
+            line-height: 30px;
+            width: 150px;
+            border-radius: 6px;
+            padding: 0 22px;
+        }
+        
+        .Password {
+            position: relative;
+            left: 120px;
+            top: -37px;
+            line-height: 30px;
+            width: 150px;
+            border-radius: 6px;
+            padding: 0 22px;
+        }
+        
+        .location {
+            position: relative;
+            left: 120px;
+            top: -37px;
+            line-height: 30px;
+            width: 150px;
+            border-radius: 6px;
+            padding: 0 22px;
+        }
+        
+        .submit {
+            left: 50px;
+            height: 40px;
+            width: 70px;
+        }
+        
         .log {
-            width: 600px;
-            background-color: rgb(252, 251, 248);
-            margin: auto;
-            padding: 3px 0px 3px 0px;
             text-align: center;
+            width: 500px;
+            height: 25px;
+            text-shadow: 2px 2px 5px grey;
+            margin: auto;
+            padding: 15px 0px 15px 0px;
+            font-size: x-large;
+            font-family: Arial, Helvetica, sans-serif;
             border-radius: 15px 15px 0px 0px;
         }
     </style>
@@ -40,17 +107,21 @@
 </head>
 
 <body>
-    <div class="log">
-        <h1>Registration</h1>
-    </div>
     <div class="main">
-        <form name="myForm" action="/appjournal/signup" onsubmit="return validateForm()" method="post">{% csrf_token %}
-            <h2>Name: <input type="text" name="name"></h2>
-            <h2> email_id :<input type="text" name="email_id"></h2>
-            <h2>password :<input type="text" name="password"></h2>
-            <h2> location: <input type="text" name="location"></h2>
-            <h2> <input type="submit" value="Submit"></h2>
-            {{ error_msg }}
+        <div class="log"><b>REGISTER</b>
+            <form name="myForm" action="/appjournal/signup" onsubmit="return validateForm()" method="post">
+                {% csrf_token %}
+                <h2 class="name">Name:</h2>
+                <input class="ename" type="text" name="name" id="name " required><br>
+                <h2 class="name">Mail Id:</h2>
+                <input class="Mail" type="text" name="email_id" id="Mail" required><br>
+                <h2 class="name">Password:</h2>
+                <input class="Password" type="text" name="password" id="password" required><br>
+                <h2 class="name">location: </h2>
+                <input class="location" type="text" name="location" required><br>
+                <h2> <input class="submit" type="submit" value="Submit"></h2>
+        </div>
+        {{ error_msg }}
         </form>
     </div>
 </body>

@@ -2,13 +2,20 @@
 <html>
 
 <head>
-
+    <style type="text/css">
+        body {
+            background-color: grey;
+        }
+        
+        .container {
+            text-align: center;
+        }
+    </style>
     <script>
         function validateForm() {
             var x = document.forms["myForm"]["fname"].value;
         }
     </script>
-
 </head>
 
 <body>
@@ -19,14 +26,14 @@
     <form name="myForm" action="/appjournal/login" onsubmit="return validateForm()" method="post">
         {% csrf_token %}
         <div class="container">
-            <label><b>Mail_Id</b></label>
+            <h2 class="de">Mail_Id</h2>
             <input type="text" placeholder="Enter Username" name="email_id" required>
 
-            <label><b>Password</b></label>
+            <h2 class="de">Password</h2>
             <input type="password" placeholder="Enter Password" name="password" required>
-
-            <button type="submit">Login</button>
-            <input type="checkbox" checked="checked"> Remember me
+            <h3>
+                <button type="submit">Login</button>
+                <input type="checkbox" checked="checked"> Remember me</h3>
         </div>
         <!--<h3> mail_id :<input type="text" name="email_id"></h3>
         <h3>password :<input type="text" name="password"></h3>

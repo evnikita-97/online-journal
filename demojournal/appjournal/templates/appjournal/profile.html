@@ -9,6 +9,24 @@
             background-position: center;
             background-size: cover;
         }
+        
+        .button {
+            position: absolute;
+            margin-left: 47%;
+            width: 150px;
+            bottom: 280px;
+            float: left;
+        }
+        
+        .a {
+            width: 60%;
+            height: 470px;
+        }
+        
+        .logout {
+            bottom: 100px;
+            float: right;
+        }
     </style>
 
 </head>
@@ -18,8 +36,19 @@
         Hello {{ user.user_name }}
     </h2>
     <div>
+        <form name="myForm" action="/appjournal/create" method="post">
+            {% csrf_token %}
+            <h2 class="jour">
+                Journal</h2>
+            <textarea type="text" name="summary"></textarea>
+            <button type="submit" name="save">Save</button>
+        </form>
+    </div>
 
-        <a href="/appjournal/logout"><button type="submit">Logout</button></a>
+    <div>
+        <h4 class="logout">
+            <a href="/appjournal/logout"><button type="submit">Logout</button></a>
+        </h4>
 
     </div>
 </body>
