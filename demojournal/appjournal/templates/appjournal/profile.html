@@ -4,53 +4,77 @@
 <head>
     <title></title>
     <style type="text/css">
+        body,
+        html {
+            padding: 0;
+            margin: 0;
+        }
+        
         body {
-            background-color: brown;
-            background-position: center;
-            background-size: cover;
+            background-color: white;
         }
         
-        .button {
-            position: absolute;
-            margin-left: 47%;
-            width: 150px;
-            bottom: 280px;
-            float: left;
+        p {
+            background: rgb(1, 1, 100);
+            width: 100%;
+            height: 35px;
+            color: white;
+            margin: 0px;
+            font-weight: bold;
+            font-size: 25px;
+            text-indent: 20px;
+            padding: 10px 0px;
         }
         
-        .a {
-            width: 60%;
-            height: 470px;
-        }
-        
-        .logout {
-            bottom: 100px;
+        p a {
+            text-decoration: none;
             float: right;
+            background: rgb(1, 1, 100);
+            color: white;
+            height: 30px;
+            width: 90px;
+            font-weight: bold;
+            font-size: 20px;
+            border: 2px solid white;
+            border-radius: 5px
+        }
+        
+        #box {
+            resize: none;
+        }
+        
+        .img {
+            float: right;
+            width: 50%;
+            height: 600px;
+        }
+        
+        div [type="submit"] {
+            width: 70px;
+            height: 25px;
+            border: 3px solid rgb(1, 1, 100);
+            font-weight: bold;
+            border-radius: 5px 0px 5px 0px;
+            font-size: 15px;
+            color: rgb(1, 1, 100);
         }
     </style>
-
 </head>
 
 <body>
-    <h2>
-        Hello {{ user.user_name }}
-    </h2>
-    <div>
-        <form name="myForm" action="/appjournal/create" method="post">
-            {% csrf_token %}
-            <h2 class="jour">
-                Journal</h2>
-            <textarea type="text" name="summary"></textarea>
+    <form name="myForm" action="/appjournal/create" method="post">
+        {% csrf_token %}
+        <p>
+            Hello {{ user.user_name }} !!
+            <a href="/appjournal/logout">Logout</a>
+        </p>
+        <div>
+            <img src="https://images.pexels.com/photos/257897/pexels-photo-257897.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500.jpg" class="img">
+            <textarea type="text" id="box" name="summary" rows="37" cols="93"></textarea>
             <button type="submit" name="save">Save</button>
-        </form>
-    </div>
-
-    <div>
-        <h4 class="logout">
-            <a href="/appjournal/logout"><button type="submit">Logout</button></a>
-        </h4>
-
-    </div>
+            <a href="/appjournal/list"><button type="submit">Show</button></a>
+        </div>
+    </form>
 </body>
 
 </html>

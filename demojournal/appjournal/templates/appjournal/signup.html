@@ -5,97 +5,85 @@
     <title></title>
     <style type="text/css">
         body {
-            background-color: rgb(20, 32, 32);
-            background-position: center;
+            margin: 0px;
+            padding: 0px;
+            background-image: url('https://i.pinimg.com/originals/b2/ad/aa/b2adaa3a80d4f52a6cb1f0fb806a3a28.jpg');
             background-size: cover;
+            background-position: center
         }
         
-        .main {
-            width: 500px;
-            background-color: white;
-            border-radius: 15px 0px 15px 0px;
-            margin: auto;
+        .signbox {
+            width: 420px;
+            height: 560px;
+            border-radius: 15px 2px 15px 2px;
+            color: rgb(1, 1, 100);
+            background: white;
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            box-sizing: border-box;
+            padding: 100px 50px;
+        }
+        
+        h1 {
+            margin: 0px;
+            padding: 0px 22px;
             text-align: center;
+            font-size: 22px;
         }
         
-        .ad {
-            float: right;
-        }
-        
-        .form {
-            padding: 10px;
-        }
-        
-        .name {
-            margin-top: 30px;
-            margin-left: 15px;
-            text-align: left;
-            color: aliceblue;
-            text-shadow: 2px 2px 5px white;
-            width: 125px;
+        .signbox p {
+            margin: 0px;
+            padding: 0px;
             font-size: 20px;
+            font-weight: bold;
         }
         
-        .ename {
-            position: relative;
-            left: 120px;
-            top: -37px;
-            line-height: 30px;
-            width: 150px;
-            border-radius: 6px;
-            padding: 0 22px;
+        .signbox input[type="submit"]:hover {
+            cursor: pointer;
+            background: rgb(93, 93, 241);
         }
         
-        .div {
-            background-color: white;
+        .signbox input {
+            margin-bottom: 20px;
+            width: 100%;
         }
         
-        .Mail {
-            position: relative;
-            left: 120px;
-            top: -37px;
-            line-height: 30px;
-            width: 150px;
-            border-radius: 6px;
-            padding: 0 22px;
-        }
-        
-        .Password {
-            position: relative;
-            left: 120px;
-            top: -37px;
-            line-height: 30px;
-            width: 150px;
-            border-radius: 6px;
-            padding: 0 22px;
-        }
-        
-        .location {
-            position: relative;
-            left: 120px;
-            top: -37px;
-            line-height: 30px;
-            width: 150px;
-            border-radius: 6px;
-            padding: 0 22px;
-        }
-        
-        .submit {
-            left: 50px;
+        .signbox input[type="text"],
+        input[type="password"],
+        input[type="email"] {
+            border: none;
+            border-bottom: 1px solid;
+            background: transparent;
+            color: rgb(1, 1, 100);
+            outline: none;
             height: 40px;
-            width: 70px;
+            font-size: 16px;
         }
         
-        .log {
-            text-align: center;
-            width: 500px;
-            height: 25px;
-            text-shadow: 2px 2px 5px grey;
-            margin: auto;
-            padding: 15px 0px 15px 0px;
-            font-size: x-large;
-            font-family: Arial, Helvetica, sans-serif;
-            border-radius: 15px 15px 0px 0px;
+        .signbox a {
+            color: rgb(1, 1, 100)
+        }
+        
+        .signbox input[type="submit"] {
+            border: none;
+            outline: none;
+            height: 40px;
+            background: rgb(1, 1, 100);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            top: -50px;
+            left: calc(50% - 50px);
         }
     </style>
     <script>
@@ -103,26 +91,27 @@
             var x = document.forms["myForm"]["fname"].value;
         }
     </script>
-
 </head>
 
 <body>
-    <div class="main">
-        <div class="log"><b>REGISTER</b>
-            <form name="myForm" action="/appjournal/signup" onsubmit="return validateForm()" method="post">
-                {% csrf_token %}
-                <h2 class="name">Name:</h2>
-                <input class="ename" type="text" name="name" id="name " required><br>
-                <h2 class="name">Mail Id:</h2>
-                <input class="Mail" type="text" name="email_id" id="Mail" required><br>
-                <h2 class="name">Password:</h2>
-                <input class="Password" type="text" name="password" id="password" required><br>
-                <h2 class="name">location: </h2>
-                <input class="location" type="text" name="location" required><br>
-                <h2> <input class="submit" type="submit" value="Submit"></h2>
+    <form name="myForm" action="/appjournal/signup" onsubmit="return validateForm()" method="post">
+        {% csrf_token %}
+        <div class="signbox">
+            <img src="https://png.pngtree.com/png-vector/20190225/ourlarge/pngtree-vector-avatar-icon-png-image_702436.jpg" class="avatar">
+            <h1>REGISTER</h1>
+            <p>Name:</p>
+            <input type="text" name="name" id="name" placeholder="Username" required><br>
+            <p>Mail Id:</p>
+            <input type="email" name="email_id" id="Mail" placeholder="Mail-Id" required><br>
+            <p>Password:</p>
+            <input type="password" name="password" id="password" placeholder="Password" required><br>
+            <p>location: </p>
+            <input type="text" name="location" placeholder="Location" required><br>
+            <input type="submit" value="Register">
+            <a href="/appjournal/login">Have a Existing Account</a>
         </div>
         {{ error_msg }}
-        </form>
+    </form>
     </div>
 </body>
 

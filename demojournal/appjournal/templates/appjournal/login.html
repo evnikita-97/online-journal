@@ -4,11 +4,85 @@
 <head>
     <style type="text/css">
         body {
-            background-color: grey;
+            margin: 0px;
+            padding: 0px;
+            background-image: url('https://i.pinimg.com/originals/b2/ad/aa/b2adaa3a80d4f52a6cb1f0fb806a3a28.jpg');
+            background-size: cover;
+            background-position: center
         }
         
-        .container {
+        .loginbox {
+            width: 420px;
+            height: 430px;
+            border-radius: 2px 15px 2px 15px;
+            color: white;
+            background: rgb(1, 1, 100);
+            top: 50%;
+            left: 50%;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            box-sizing: border-box;
+            padding: 100px 50px;
+        }
+        
+        h1 {
+            margin: 0px;
+            padding: 0px 22px;
             text-align: center;
+            font-size: 22px;
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 80%;
+            position: absolute;
+            top: -20px;
+            left: calc(50% - 50px);
+        }
+        
+        .loginbox p {
+            margin: 0px;
+            padding: 0px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .loginbox input[type="submit"]:hover {
+            cursor: pointer;
+            background: rgb(149, 149, 247);
+        }
+        
+        .loginbox input {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+        
+        .loginbox input[type="text"],
+        input[type="password"] {
+            border: none;
+            border-radius: 5px;
+            border-bottom: 1px solid white;
+            background: transparent;
+            color: white;
+            outline: white;
+            height: 40px;
+            font-size: 16px;
+        }
+        
+        .loginbox a {
+            color: #fff;
+        }
+        
+        .loginbox input[type="submit"] {
+            border: none;
+            outline: none;
+            height: 40px;
+            background: #fff;
+            color: rgb(1, 1, 100);
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 10px;
         }
     </style>
     <script>
@@ -19,26 +93,25 @@
 </head>
 
 <body>
-
-    <h1>Login</h1>
-
-
     <form name="myForm" action="/appjournal/login" onsubmit="return validateForm()" method="post">
         {% csrf_token %}
-        <div class="container">
-            <h2 class="de">Mail_Id</h2>
+        <div class="loginbox">
+            <img src="https://image.shutterstock.com/image-vector/user-avatar-icon-sign-profile-260nw-1145752283.jpg" class="avatar">
+            <h1>Login</h1>
+            <p>Username</p>
             <input type="text" placeholder="Enter Username" name="email_id" required>
-
-            <h2 class="de">Password</h2>
+            <p>Password</p>
             <input type="password" placeholder="Enter Password" name="password" required>
-            <h3>
-                <button type="submit">Login</button>
-                <input type="checkbox" checked="checked"> Remember me</h3>
+            <input type="submit" value="Login">
+            <a href="/appjournal/signup">Don't have an Account</a>
+
         </div>
         <!--<h3> mail_id :<input type="text" name="email_id"></h3>
         <h3>password :<input type="text" name="password"></h3>
         <h3> <input type="submit" value="Submit"></h3>-->
+
         {{ error_msg }}
+
     </form>
 </body>
 
