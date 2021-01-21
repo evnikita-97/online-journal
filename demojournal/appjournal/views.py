@@ -8,6 +8,16 @@ from django.core.exceptions import ValidationError
 from . forms import SignUpForm
 from django.contrib.auth.hashers import make_password, check_password
 from django.utils import timezone
+from django.core import serializers
+from django.forms.models import model_to_dict
+import json
+import datetime
+import calendar
+from django.utils.dateparse import parse_date, parse_datetime
+from datetime import timedelta
+from datetime import datetime, timedelta
+from pytz import timezone
+import pytz
 
 # Create your views here.
 
@@ -144,3 +154,55 @@ def journal_list(request):
     }
 
     return render(request, 'appjournal/list.html', context)
+
+
+def api_journal_list(request):
+    email=request.session['email']
+    user=User.objects.get(mail_id=email)
+    journals = user.journal_set.all()
+    
+    data = serializers.serialize("json",journals)
+
+    return HttpResponse(data, content_type="application/json")
+
+def api_journal_list_month(request, date = ""):
+    email=request.session['email']
+    user=User.objects.get(mail_id=email)
+    d = parse_date(date)
+
+    first = d.replace(day=1)
+    month_range = calendar.monthrange(d.year, d.month)
+    _, last_day = month_range
+    last = d.replace(day=last_day)
+
+    journals = Journal.objects.filter(user=user, a_date__range=[first, last])
+    data = serializers.serialize("json",journals)
+
+
+    return HttpResponse(data, )
+
+
+def api_journal_list_day(request,date=""):
+    email=request.session['email']
+    user=User.objects.get(mail_id=email)
+    d = parse_date(date)
+
+    # print(type(d))
+    tz = pytz.timezone('Asia/Kolkata')
+    
+    dt = datetime.combine(d, datetime.min.time())
+    dt = tz.localize(dt)
+    
+    
+    start = dt.replace(hour=0, minute=0, second=0, microsecond=0)
+    end = start + timedelta(1)
+    
+    journals = Journal.objects.filter(user=user, a_date__range=[start, end])
+    data = serializers.serialize("json",journals)
+
+
+    return HttpResponse(data, )
+
+    
+   
+   
